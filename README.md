@@ -1,6 +1,6 @@
-# Method Refactoring
+# Extract Method
 
-Method Refactoring is a python implementation of an automated code refactoring tool for refactoring long method code smell.
+Extract Method is a python implementation of an automated code refactoring tool for refactoring long method code smell.
 ## Install requirements
 
 ```bash
