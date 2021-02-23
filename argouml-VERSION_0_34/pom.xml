@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- 
+    Experimenting with maven for the nightly build.
+  -->
+
+  <parent>
+    <groupId>org.argouml</groupId>
+    <artifactId>parentpom</artifactId>
+    <version>0.6</version>
+    <relativePath>tools/maven/parentpom.xml</relativePath>
+  </parent>
+
+  <artifactId>argouml-core</artifactId>
+  <version>0.2-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>src/argouml-core-model</module>
+    <module>src/argouml-core-model-mdr</module>
+    <module>src/argouml-core-model-euml</module>
+    <module>src/argouml-core-notation</module>
+    <module>src/argouml-core-transformer</module>
+    <module>src/argouml-core-umlpropertypanels</module>
+    <module>src/argouml-core-diagrams-activity2</module>
+    <module>src/argouml-core-diagrams-class2</module>
+    <module>src/argouml-core-diagrams-sequence2</module>
+    <module>src/argouml-core-diagrams-state2</module>
+    <module>src/argouml-core-diagrams-structure2</module>
+    <module>src/argouml-app</module>
+  </modules>
+
+  <name>argouml-core</name>
+  <description>
+The group of core argouml projects.
+This project is the virtual project that includes all core subprojects.
+  </description>
+
+  <scm>
+    <connection>scm:svn:http://argouml.tigris.org/svn/argouml/trunk/</connection>
+    <developerConnection>scm:svn:http://argouml.tigris.org/svn/argouml/trunk/</developerConnection>
+    <url>http://argouml.tigris.org/svn/argouml/trunk/</url>
+  </scm>
+</project>

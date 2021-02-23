@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Macros" pattern="file[jEdit]:macros//*.bsh" />
+</component>

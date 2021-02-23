@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="jedit:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/jedit_jar</output-path>
+    <root id="archive" name="jedit.jar">
+      <element id="module-output" name="jedit" />
+    </root>
+  </artifact>
+</component>

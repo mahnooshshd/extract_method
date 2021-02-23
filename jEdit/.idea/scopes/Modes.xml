@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Modes" pattern="file[jEdit]:modes//*.xml" />
+</component>

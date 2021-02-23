@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="jEdit Sourcefiles" pattern="file[jEdit]:org//*.java" />
+</component>

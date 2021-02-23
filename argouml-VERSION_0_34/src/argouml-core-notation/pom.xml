@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- 
+    Experimenting with maven for the nightly build.
+  -->
+
+  <parent>
+    <groupId>org.argouml</groupId>
+    <artifactId>argouml-core</artifactId>
+    <version>0.2-SNAPSHOT</version>
+    <relativePath>../..</relativePath>
+  </parent>
+
+  <artifactId>argouml-notation</artifactId>
+
+  <properties>
+    <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.argouml</groupId>
+      <artifactId>argouml</artifactId>
+      <version>${project.version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.argouml</groupId>
+      <artifactId>argouml-model</artifactId>
+      <version>${project.version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.6-6</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+
+  </dependencies>
+
+  <name>argouml-core-notation</name>
+  <description>
+Notation.
+  </description>
+
+</project>
