@@ -231,7 +231,7 @@ def get_code_graph(method_name, class_name, project_path):
 		print('sorry! this class can not be refactored %s'%class_name)
 		return None
 
-	print(file_path)
+	# print(file_path)
 	source_lines = open(file_path, 'r').readlines()
 	method_found = False
 	graph = nx.DiGraph()
@@ -267,7 +267,7 @@ def get_code_graph(method_name, class_name, project_path):
 			args = input_part.split(',')
 			for arg in args:
 				var_name = arg.split(' ')[-1].strip()
-				print(var_name)
+				# print(var_name)
 				data_def[var_name] = line_counter
 			continue
 
@@ -378,3 +378,38 @@ def get_code_graph(method_name, class_name, project_path):
 			if '}' in line and re.search(r"(?<=').*?}.*?(?=')", line) is None and re.search(r'(?<=").*?}.*?(?=")', line) is None:
 
 				scope_stack.pop()
+
+
+def get_method_name(lines, graph):
+	input_vars = []
+	for index in lines:
+		line = graph.nodes[index]['content']
+		statement = get_statement(line)
+		if statement == 'return':
+			return_vars = get_return_vars(line)
+			if len(return_vars) > 0:
+				return 'get_%s'%return_vars[0]
+
+		if statement == 'if':
+			#determine variables
+			var_list = get_if_vars(line)
+			if len(var_list) > 0:
+				input_vars.append(var_list[0])
+			
+
+		if statement == 'for':
+			var_list = get_for_vars(line)
+			if len(var_list) > 0:
+				input_vars.append(var_list[0])
+			
+		if statement == 'while':
+			var_list = get_while_vars(line)
+			if len(var_list) > 0:
+				input_vars.append(var_list[0])
+
+		if statement == 'assignment':
+			defined_var, var_list = get_assignment_vars(line)
+			if len(var_list) > 0:
+				input_vars.append(var_list[0])
+	if len(input_vars) > 0:
+		return 'handle_%s'%input_vars[0]

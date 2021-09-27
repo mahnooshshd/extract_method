@@ -137,4 +137,4 @@ def get_candidate_refactorings(method_name, class_name, project_path):
 				if sub_graph is not None:
 					possible_refactorings.append(sub_graph)
 			refactoring_ranks = rank_refactoring_candidates(graph, possible_refactorings)
-			return refactoring_ranks, loc
+			return refactoring_ranks, loc, graph

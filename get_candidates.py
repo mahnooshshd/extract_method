@@ -13,13 +13,13 @@ def get_dataset_data(project_path):
     with open(data_path, newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
         for row in spamreader:
-            print(row)
+            # print(row)
             if len(row) > 1:
                 row_data = [row[0].split(';')[0], row[1].split(';')[0]]
                 if not row[1].split(';')[0] in ignore_files:
                 	res.append(row_data)
 
-    print(len(res), res)
+    # print(len(res), res)
     return res
 
 
@@ -43,7 +43,7 @@ def get_candidate_functions(graph_res, project_path):
     same_methods_counter_3 = 0
     same_methods_counter_4 = 0
 
-    dataset = get_dataset_data(project_path)
+    # dataset = get_dataset_data(project_path)
 
     candidate_funcions = []
 
@@ -76,9 +76,7 @@ def get_candidate_functions(graph_res, project_path):
                     class_name = method_parents[-2]
 
                 total_counter_nim += 1
-
-                if [method_parents[-1], class_name+'.java'] in dataset:
-                    same_methods_counter_nim += 1
+                candidate_funcions.append(method_parents)
 
             if res > 1:
                 if '$' in method_parents[-2]:
@@ -88,10 +86,6 @@ def get_candidate_functions(graph_res, project_path):
 
                 total_counter_1 += 1
 
-                if [method_parents[-1], class_name+'.java'] in dataset:
-                    same_methods_counter_1 += 1
-
-
             if res > 2:
                 if '$' in method_parents[-2]:
                     class_name = method_parents[-2].split('$')[0]
@@ -99,12 +93,6 @@ def get_candidate_functions(graph_res, project_path):
                     class_name = method_parents[-2]
 
                 total_counter_2 += 1
-                candidate_funcions.append(method_parents)
-
-                if [method_parents[-1], class_name+'.java'] in dataset:
-                    same_methods_counter_2 += 1
-
-
 
             if res > 3:
                 if '$' in method_parents[-2]:
@@ -114,11 +102,6 @@ def get_candidate_functions(graph_res, project_path):
 
                 total_counter_3 += 1
 
-                if [method_parents[-1], class_name+'.java'] in dataset:
-                    same_methods_counter_3 += 1
-
-
-
             if res > 4:
                 if '$' in method_parents[-2]:
                     class_name = method_parents[-2].split('$')[0]
@@ -126,8 +109,5 @@ def get_candidate_functions(graph_res, project_path):
                     class_name = method_parents[-2]
 
                 total_counter_4 += 1
-
-                if [method_parents[-1], class_name+'.java'] in dataset:
-                    same_methods_counter_4 += 1
 
     return candidate_funcions

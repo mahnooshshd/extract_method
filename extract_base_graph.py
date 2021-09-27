@@ -83,8 +83,8 @@ def calculate_closeness(call_file_path):
 			external_g.add_edge(caller_num, callee_num)
 
 
-	print(internal_g.number_of_edges())
-	print(external_g.number_of_edges())
+	# print(internal_g.number_of_edges())
+	# print(external_g.number_of_edges())
 
 	internal_closeness = closeness_centrality(internal_g)
 	external_closeness = closeness_centrality(external_g)
