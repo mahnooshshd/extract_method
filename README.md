@@ -18,4 +18,4 @@ Then put the project source code directory in the root directory of Extract Meth
 ```bash
 python main.py projetc_directory_name
 ```
- 
+ The recommended refactorings for the project will be printed out. You can put the output in a file to save the recommendations.
