@@ -42,4 +42,28 @@ Currently, three Java projects are available in this repository as the benchmark
 * FreeMind (v0.9.0)
 * JEdit
 
-## Running example
+## Demo
+Figure 1 demonstrates the `caseALogicalExpressionTail` method with 45 lines of code in class `org.argouml.profile.internal.ocl.EvaluateExpression` of the **ArgoUML** project. This method is detected as a long method by the proposed tool. The identified lines of code to be extracted as the new method have been highlighted in the figure. 
+From line 14 to line 40 is considered to be extracted as a new method. It is observed that these lines of code are used to set the value of the field in the `EvaluateExpression` class named `val`, which is a separate responsibility compared to the rest of the method's body. 
+Figure 2 shows the dependency graph of `caseALogicalExpressionTail` method used for analyzing the method during refactoring process.  
+
+
+![ArgoUML method body](./docs/figs/argo_uml_method1.png)
+_Figure 1. Extract Method opportunity identified by the proposed approach in `org.argouml.profile.internal.ocl.EvaluateExpression` class of the ArgoUML project._
+
+
+![ArgoUML method dependency graph](./docs/figs/argo_uml_method1_dependency_graph.png)
+_Figure 2. Dependecy graph of method in Figure 1_
+
+
+## Publications 
+[1] An Automated Extract Method Refactoring Approach to Correct the Long Method Code Smell (To be published).
+
+
+
+
+
+
+
+
+
