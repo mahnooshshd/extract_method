@@ -1,1 +1,25 @@
-site_name: My Docs
+site_name: Extract Method Refactoring Docs
+site_url:
+repo_url:
+site_description: Automated Source Code Refactoring Toolkit
+site_author: Shahidi, Ashtiani, Zakeri
+copyright: © 2020-2021 Extract Method project
+
+
+theme:
+  name: material
+
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - import os
+          selection:
+            members: True
+
+nav:
+    - Home: index.md
