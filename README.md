@@ -49,10 +49,12 @@ Figure 2 shows the dependency graph of `caseALogicalExpressionTail` method used 
 
 
 ![ArgoUML method body](./docs/figs/argo_uml_method1.png)
+
 _Figure 1. Extract Method opportunity identified by the proposed approach in `org.argouml.profile.internal.ocl.EvaluateExpression` class of the ArgoUML project._
 
 
 ![ArgoUML method dependency graph](./docs/figs/argo_uml_method1_dependency_graph.png)
+
 _Figure 2. Dependecy graph of method in Figure 1_
 
 
