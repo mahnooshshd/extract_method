@@ -1,5 +1,7 @@
 # Extract Method
 
+**W**elcome to the Automated Extract Method Refactoring tool.
+We employ the power of graph analysis to refactor source code.
 *Extract Method* is a python implementation of an automated code refactoring tool for refactoring Java Long Method and Feature Envy code smells. The proposed tool aims to deal with issues related to long method detection, refactoring, selection of the proper name for the new method, and identification of the destination class. The tool mainly uses graph analysis techniques to identify and refactor Java long method smells.
 
 ## Getting started
@@ -48,24 +50,18 @@ From line 14 to line 40 is considered to be extracted as a new method. It is obs
 Figure 2 shows the dependency graph of `caseALogicalExpressionTail` method used for analyzing the method during refactoring process.  
 
 
-![ArgoUML method body](./docs/figs/argo_uml_method1.png)
+![ArgoUML method body](figs/argo_uml_method1.png)
 
 _Figure 1. Extract Method opportunity identified by the proposed approach in `org.argouml.profile.internal.ocl.EvaluateExpression` class of the ArgoUML project._
 
 
-![ArgoUML method dependency graph](./docs/figs/argo_uml_method1_dependency_graph.png)
+![ArgoUML method dependency graph](figs/argo_uml_method1_dependency_graph.png)
 
 _Figure 2. Dependecy graph of method in Figure 1_
 
 
 ## Publications 
 [1] An Automated Extract Method Refactoring Approach to Correct the Long Method Code Smell (To be published).
-
-
-
-
-
-
 
 
 
