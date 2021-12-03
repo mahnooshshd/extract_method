@@ -20,7 +20,7 @@ python main.py projetc_directory_name project_jar_file_path
 Replace `projetc_directory_name` with the name of your Java project.
 Replace `project_jar_file_path` with the path to the jar file of your Java project.
 
-The execution of the tool can take a few minutes or some hours, depending on the project size. After execution, the recommended refactorings for the project will be printed out. You can save the desired outputs in a file. 
+The execution of the tool can take a few minutes or some hours, depending on the project size. After execution, the recommended refactorings for the project will be in the output directory. The output will be in the json format file. 
 
 
 ## Benchmarks
