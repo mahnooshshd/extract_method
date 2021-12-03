@@ -101,7 +101,7 @@ def main():
     line_numbers = []
     json_output = []
     with alive_bar(len(candidate_functions)) as bar:
-        for function in candidate_functions[:20]:
+        for function in candidate_functions:
             bar()
             function_refactoring_res = get_candidate_refactorings(function[-1], function[-2], project_path)
             if function_refactoring_res is not None:
