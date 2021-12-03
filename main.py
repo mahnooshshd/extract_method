@@ -11,6 +11,17 @@ import json
 from alive_progress import alive_bar
 import os
 
+def generate_call_file(project_dir_name, projetc_jar_file):
+    os.system("java -jar javacg-0.1-SNAPSHOT-static.jar %s > %s/call.txt"%(projetc_jar_file, project_dir_name))
+
+
+def get_line_contents(line_numbers, graph):
+    result = []
+    for index in line_numbers:
+        line = graph.nodes[index]['content']
+        result.append(line)
+    return result
+
 
 def plot_data(classes_data, project_dir_name):
     labels = []
@@ -36,7 +47,7 @@ def plot_data(classes_data, project_dir_name):
             counter += 1
 
 
-    print(pos_counter, negative_counter, pos_counter+negative_counter)
+    # print(pos_counter, negative_counter, pos_counter+negative_counter)
     x = np.arange(len(labels))  # the label locations
     width = 0.35  # the width of the bars
 
@@ -77,9 +88,12 @@ def plot_line_numbers(line_numbers, project_dir_name):
 def main():
     start = datetime.datetime.now()
     project_dir_name = sys.argv[1]
+    projetc_jar_file = sys.argv[2]
+    generate_call_file(project_dir_name, projetc_jar_file)
     call_file_path = '%s/call.txt'%project_dir_name
     project_path = './%s'%project_dir_name
     project_name = project_dir_name.split('/')[0]
+    print('Fetching project data...')
     graph_res = calculate_closeness(call_file_path)
     candidate_functions = get_candidate_functions(graph_res, project_path)
     ranked_refactprings = []
@@ -87,7 +101,7 @@ def main():
     line_numbers = []
     json_output = []
     with alive_bar(len(candidate_functions)) as bar:
-        for function in candidate_functions:
+        for function in candidate_functions[:20]:
             bar()
             function_refactoring_res = get_candidate_refactorings(function[-1], function[-2], project_path)
             if function_refactoring_res is not None:
@@ -103,23 +117,28 @@ def main():
                             max_rank = key
                             index = rank
                 if max_rank > 0:
+                    refactored_lines = None
                     chosen_refactoring = function_refactoring[index][max_rank]
-                    print('chosen refactor for method: %s class: %s'%(function[-1], function[-2]), chosen_refactoring)
+                    # print('chosen refactor for method: %s class: %s'%(function[-1], function[-2]), chosen_refactoring)
+                    print('method %s of class %s has been refactored'%(function[-1], function[-2]))
                     method_name = get_method_name(chosen_refactoring, method_graph)
-                    print('name for chosen refactoring: %s'%method_name)
+                    # print('name for chosen refactoring: %s'%method_name)
                     class_data, new_class = define_destination_class(graph_res, function[-1], function[-2])
                     if new_class is not None and class_data is not None:
-                        print('new class is %s --- %s'%(new_class, class_data))
+                        # print('new class is %s --- %s'%(new_class, class_data))
                         print('----------------------------------')
                         class_data['name'] = new_class
                         new_classes_info.append(class_data)
                         line_numbers.append((loc, len(chosen_refactoring)))
+                        refactored_lines = get_line_contents(chosen_refactoring, method_graph)
+                    
                     output_obj = {
                         'class': function[-2],
                         'method': function[-1],
                         'destination_class': new_class,
                         'method_name': method_name,
-                        'extracted_line_numbers': chosen_refactoring
+                        'extracted_line_numbers': chosen_refactoring,
+                        'extracted_lines': refactored_lines
                     }
                     json_output.append(output_obj)
                     
