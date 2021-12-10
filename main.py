@@ -23,6 +23,18 @@ def get_line_contents(line_numbers, graph):
     return result
 
 
+def has_vulnerability(line_numbers, graph):
+    private = False
+    final = False
+    for index in line_numbers:
+        vul_obj = graph.nodes[index]['vulnerability']
+        if vul_obj.get('final'):
+            final = True
+        if vul_obj.get('private'):
+            private = True
+    return private and final
+
+
 def plot_data(classes_data, project_dir_name):
     labels = []
     old_values = []
@@ -131,6 +143,7 @@ def main():
                         new_classes_info.append(class_data)
                         line_numbers.append((loc, len(chosen_refactoring)))
                         refactored_lines = get_line_contents(chosen_refactoring, method_graph)
+                        vulnerability = has_vulnerability(chosen_refactoring, method_graph)
                     
                     output_obj = {
                         'class': function[-2],
@@ -138,7 +151,8 @@ def main():
                         'destination_class': new_class,
                         'method_name': method_name,
                         'extracted_line_numbers': chosen_refactoring,
-                        'extracted_lines': refactored_lines
+                        'extracted_lines': refactored_lines,
+                        'potentially_unwanted_security_vulnerability': vulnerability
                     }
                     json_output.append(output_obj)
                     

@@ -104,6 +104,16 @@ def get_statement(line):
 		return 'return'
 
 
+def is_final_var(line, var):
+	try:
+		is_final = re.findall('final %s'%var, line)
+		if len(is_final) > 0:
+			return True
+		return False
+	except: 
+		return False
+
+
 def get_if_vars(line):
 	parts = re.split('&&|\|\|', line)
 	variables = []
@@ -238,6 +248,8 @@ def get_code_graph(method_name, class_name, project_path):
 	
 	dependent_blocks = []
 	has_start_func = False
+	private_vulnerability = False
+	final_vulnerability = False
 	
 	for line in source_lines:
 
@@ -245,6 +257,8 @@ def get_code_graph(method_name, class_name, project_path):
 
 
 		if len(method_def) > 0:
+			if not 'private' in line:
+				private_vulnerability = True
 			method_found = True
 			scope_stack = []
 			data_def = {}
@@ -256,7 +270,8 @@ def get_code_graph(method_name, class_name, project_path):
 			if '{' in line:
 				has_start_func = True
 			
-			graph.add_node(line_counter, content=line.strip())
+			vul_obj = {'final': final_vulnerability, 'private': private_vulnerability}
+			graph.add_node(line_counter, content=line.strip(), vulnerability=vul_obj)
 			
 			code_lines.append(line)
 
@@ -304,7 +319,8 @@ def get_code_graph(method_name, class_name, project_path):
 				var_list = []
 				line_counter += 1
 				code_lines.append(line)
-				graph.add_node(line_counter, content=line.strip())
+				vul_obj = {'final': final_vulnerability, 'private': private_vulnerability}
+				graph.add_node(line_counter, content=line.strip(), vulnerability=vul_obj)
 
 				for parent in scope_stack:
 					graph.add_weighted_edges_from([(line_counter, parent, control_dep_weight)])
@@ -355,6 +371,8 @@ def get_code_graph(method_name, class_name, project_path):
 				if statement == 'assignment':
 					defined_var, var_list = get_assignment_vars(line)
 					data_def[defined_var] = line_counter
+					if is_final_var(line, defined_var):
+						final_vulnerability = True
 					#determine vars
 
 				if statement == 'return':
