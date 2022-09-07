@@ -43,12 +43,18 @@ _Figure 1. Extract Method opportunity identified by the proposed approach in `or
 
 ![ArgoUML method dependency graph](./docs/figs/argo_uml_method1_dependency_graph.png)
 
-_Figure 2. Dependecy graph of method in Figure 1_
+_Figure 2. Dependecy graph of method in Figure 1._
+
 
 
 ## Publications 
-[1] An Automated Extract Method Refactoring Approach to Correct the Long Method Code Smell (To be published).
 
+[1] Shahidi, M., Ashtiani, M., & Zakeri-Nasrabadi, M. (2022). An automated extract method refactoring approach to correct the long method code smell. Journal of Systems and Software, 187, 111221. [https://doi.org/10.1016/J.JSS.2022.111221](https://doi.org/10.1016/J.JSS.2022.111221).
+
+
+## Read more
+
+[Documentation website](https://m-zakeri.github.io/extract_method)
 
 
 
